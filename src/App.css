@@ -1,17 +1,22 @@
 body {
-    width: 100%;
+    position: relative;
+    width: cover;
     font-family: Arial;
     background-color: black;
     padding: 50px;
-    color: whitesmoke;
+    color: rgb(221, 230, 237);
+
+    background-image: url(img/space1.png);
+    background-position: center;
 }
 
 .app {
     max-width: 600px;
-    margin: 0;
-    background-color: rgba(36, 36, 36, 0.788);
+    margin: 0 auto;
+    background-color: rgba(39, 55, 77, 0.966);
     padding: 20px 30px;
     border-radius: 10px;
+
 }
 
 h1 {
@@ -23,9 +28,64 @@ h2 {
 }
 
 p {
-    margin:  10px 0;
+    margin: 10px 0;
 }
 
 input {
     box-sizing: border-box;
+}
+
+button {
+    background-color: rgb(157, 178, 191);
+    color: white;
+    padding: 5px 5px;
+    margin-right:  10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: all 0.5s;
+}
+
+button:hover {
+    opacity: 1;
+}
+
+input,
+select {
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid rgb(221, 230, 237);
+    border-radius: 3px;
+    width: 100%;
+}
+
+.todo-form {
+    padding-bottom: 15px;
+}
+
+.todo-list {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 3px solid rgb(157, 178, 191);
+}
+
+.todo {
+    background-color: rgb(157, 178, 191);
+    color: black;
+    box-shadow: 0 0 10px black;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.complete {
+    background-color: rgb(10, 136, 83);
+}
+
+.remove {
+    background-color: rgb(173, 30, 30);
 }
