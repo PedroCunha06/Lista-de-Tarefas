@@ -1,5 +1,4 @@
 body {
-    position: relative;
     width: cover;
     font-family: Arial;
     background-color: black;
@@ -11,12 +10,12 @@ body {
 }
 
 .app {
+    height: 940px;
     max-width: 600px;
     margin: 0 auto;
     background-color: rgba(39, 55, 77, 0.966);
     padding: 20px 30px;
     border-radius: 10px;
-
 }
 
 h1 {
@@ -44,7 +43,7 @@ button {
     border-radius: 3px;
     cursor: pointer;
     opacity: 0.8;
-    transition: all 0.5s;
+    transition: opacity 0.5s;
 }
 
 button:hover {
@@ -65,9 +64,11 @@ select {
 }
 
 .todo-list {
+    max-height: 350px;
     margin-bottom: 20px;
     padding-bottom: 20px;
     border-bottom: 3px solid rgb(157, 178, 191);
+    overflow: auto;
 }
 
 .todo {
@@ -80,6 +81,7 @@ select {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
 
 .complete {
@@ -89,3 +91,24 @@ select {
 .remove {
     background-color: rgb(173, 30, 30);
 }
+
+.filter, .search {
+    border-bottom: 3px solid rgb(157, 178, 191);
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+
+.filter-options {
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+}
+
+.filter-options div {
+    flex: 1 1 0;
+}
+
+.box {
+    display: block;
+}
+

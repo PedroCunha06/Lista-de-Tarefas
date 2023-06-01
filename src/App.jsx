@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css"
 import Todo from "./components/Todo";
 import TodoForm from "./components/TodoForm";
+import Box from "./components/Box";
 
 
 function App() {
@@ -27,6 +28,18 @@ function App() {
 
     ]);
 
+    const [search, setSearch] = useState("");
+
+    const [filter, setFilter] = useState("All");
+    const [sort, setSort] = useState("Asc");
+    const [task, setTask] = useState("All");
+    const [caixa, setCaixa] = useState(true)
+
+    const box = () => {
+        const newCaixa = ((caixa) => caixa === true ? caixa = false : caixa = true)
+        setCaixa(newCaixa);
+    }
+
     const addTodo = (text, category) => {
 
         const newTodos = [
@@ -43,9 +56,9 @@ function App() {
 
     const removeTodo = (id) => {
         const newTodos = [...todos]
-        const filteredTodos = newTodos.filter(todo => 
+        const filteredTodos = newTodos.filter(todo =>
             todo.id !== id ? todo : null
-            );
+        );
         setTodos(filteredTodos);
     }
 
@@ -55,19 +68,59 @@ function App() {
         setTodos(newTodos);
     }
 
-
     return (
         <div className="app">
             <h1>Lista de Tarefas</h1>
+            <button
+                style={{marginBottom: caixa ? "0px" : "20px"}}           
+                onClick={(e) => box()}>Caixa de Pesquisa</button>
+            <div className="box" style={{display: caixa ? "block" : "none"}}>
+                <Box
+                    search={search}
+                    setSearch={setSearch}
+                    filter={filter}
+                    setFilter={setFilter}
+                    sort={sort}
+                    setSort={setSort}
+                    task={task}
+                    setTask={setTask}
+                />
+            </div>
             <div className="todo-list">
-                {todos.map((todo) => (
-                    <Todo 
-                    key={todo.id} 
-                    todo={todo} 
-                    removeTodo={removeTodo} 
-                    completeTodo={completeTodo}
-                    />
-                ))}
+                <h2>Tarefas</h2>
+                {todos
+                    .sort((a, b) =>
+                        sort === "Asc"
+                            ? a.text.localeCompare(b.text)
+                            : b.text.localeCompare(a.text)
+                    )
+                    .filter((todo) =>
+                        filter === "All"
+                            ? true
+                            : filter === "Completed"
+                                ? todo.isCompleted
+                                : !todo.isCompleted
+                    )
+                    .filter((todo) =>
+                        task === "All"
+                            ? true
+                            : task === "Work"
+                                ? todo.category === "Trabalho"
+                                : task === "Personal"
+                                    ? todo.category === "Pessoal"
+                                    : todo.category === "Estudos"
+                    )
+                    .filter((todo) =>
+                        todo.text.toLowerCase().includes(search.toLowerCase())
+                    )
+                    .map((todo) => (
+                        <Todo
+                            key={todo.id}
+                            todo={todo}
+                            removeTodo={removeTodo}
+                            completeTodo={completeTodo}
+                        />
+                    ))}
             </div>
             <div>
                 <TodoForm addTodo={addTodo}></TodoForm>
