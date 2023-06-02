@@ -3,6 +3,7 @@ import "./App.css"
 import Todo from "./components/Todo";
 import TodoForm from "./components/TodoForm";
 import Box from "./components/Box";
+import StartTime from "./components/Time";
 
 
 function App() {
@@ -33,7 +34,8 @@ function App() {
     const [filter, setFilter] = useState("All");
     const [sort, setSort] = useState("Asc");
     const [task, setTask] = useState("All");
-    const [caixa, setCaixa] = useState(true)
+    const [caixa, setCaixa] = useState(true);
+
 
     const box = () => {
         const newCaixa = ((caixa) => caixa === true ? caixa = false : caixa = true)
@@ -69,11 +71,12 @@ function App() {
     }
 
     return (
+        <div><StartTime/>
         <div className="app">
             <h1>Lista de Tarefas</h1>
             <button
                 style={{marginBottom: caixa ? "0px" : "20px"}}           
-                onClick={(e) => box()}>Caixa de Pesquisa</button>
+                onClick={() => box()}>Caixa de Pesquisa</button>
             <div className="box" style={{display: caixa ? "block" : "none"}}>
                 <Box
                     search={search}
@@ -125,6 +128,7 @@ function App() {
             <div>
                 <TodoForm addTodo={addTodo}></TodoForm>
             </div>
+        </div>
         </div>
     )
 }
